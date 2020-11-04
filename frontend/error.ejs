@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wystąpił błąd!</title>
+</head>
+<body>
+    <h1><%=info%></h1> 
+    <h1>Aktualna data: <%=aktualnadata%>
+        <% if(od_kiedy < aktualnadata){ %>
+            <h1>Od kiedy: <b style="color: red;"><%=od_kiedy%></b></h1>
+          <% } else{ %>  
+            <h1>Do kiedy: <%=od_kiedy%></h1>
+         <% } %>
+         <% if(do_kiedy < aktualnadata){ %>
+            <h1>Od kiedy: <b style="color: red;"><%=do_kiedy%></b></h1>
+          <% } else{ %>  
+            <h1>Do kiedy: <%=do_kiedy%></h1>
+         <% } %>
+    </h1>
+</body>
+</html>

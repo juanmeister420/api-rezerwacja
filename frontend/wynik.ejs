@@ -1,11 +1,184 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wynik wyszukiwania: <%= ilosc %></title>
-</head>
-<body>
-    <h1>Ilość takich pokoi: <%= ilosc %></h1>
-</body>
+    <meta charset="utf-8">
+    <title>Wyniki wyszukiwania <%= ilosc %></title>
+    <!-- SEO -->
+    <meta name="description" content="Around - Multipurpose Bootstrap Template">
+    <meta name="keywords" content="bootstrap, business, consulting, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, multipurpose, product landing, shop, software, ui kit, web studio, landing, html5, css3, javascript, gallery, slider, touch, creative">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fevicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#766df4">
+    <meta name="theme-color" content="#ffffff">
+    <!-- łądowanie css-->
+    <style>
+      .cs-page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .cs-page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .cs-page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .cs-page-loading.active > .cs-page-loading-inner {
+        opacity: 1;
+      }
+      .cs-page-loading-inner > span {
+        display: block;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #737491;
+      }
+      .cs-page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        border: .15em solid #766df4;
+        border-right-color: transparent;
+        border-radius: 50%;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      @-webkit-keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          var preloader = document.querySelector('.cs-page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 2000);
+        };
+      })();
+      
+    </script>
+    <!-- Venory-->
+    <link rel="stylesheet" media="screen" href="wynik/vendor/simplebar/dist/simplebar.min.css"/>
+    <!-- Główne + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="wynik/css/theme.min.css">
+  </head>
+  <!-- -->
+  <body>
+    <!-- ładowanie-->
+    <div class="cs-page-loading active">
+      <div class="cs-page-loading-inner">
+        <div class="cs-page-spinner"></div><span>Ładuje...</span>
+      </div>
+    </div>
+    <main class="cs-page-wrapper">
+      
+      <!-- Konktent-->
+      <!-- Intro-->
+      <section class="d-flex align-items-center position-relative bg-dark bg-size-cover bg-position-center fh-section overflow-hidden pt-6 pb-lg-5" style="background-image: url(bg.jpg); margin-top: -111px;">
+        <div class="container-fluid pt-4 pb-5 py-lg-5">
+          <div class="row align-items-center py-3">
+            <div class="col-xl-6 col-lg-5 d-flex justify-content-end">
+              <div class="pt-2 mx-auto mb-5 mb-lg-0 ml-lg-0 mr-xl-7 text-center text-lg-left" style="max-width: 495px;">
+                <h1 class="display-4 text-light pb-2"><span class="font-weight-light">Oto wyniki wyszukiwania: 
+                  <% if (ilosc == 0) { %>
+                    <b>0 😥</b>
+                  <% } else if (10 > ilosc && ilosc > 0) { %>
+                    <b><%= ilosc %> 🔴</b>
+                  <% } else if (20 > ilosc && ilosc >= 1) { %>
+                    <b><%= ilosc %> 🟡</b>
+                  <% } else if (ilosc >= 20) { %>
+                    <b><%= ilosc %> 🟢</b>
+                  <% } %>           
+                </h1>
+                <p class="h4 font-weight-light text-light opacity-70 line-height-base"><b>Podane parametry:</b></p>
+                <p class="h4 font-weight-light text-light opacity-70 line-height-base">Ilość osób: <%= ilosc_osob %></p>
+                <p class="h4 font-weight-light text-light opacity-70 line-height-base">Od kiedy: <%= od_kiedy %></p>
+                <p class="h4 font-weight-light text-light opacity-70 line-height-base">Do kiedy: <%= do_kiedy %></p>
+                <hr class="hr-light mb-5">
+                <div class="row">
+                  <!-- <div class="col-sm-4">
+                    <div class="h1 text-light mb-1">47</div>
+                    <div class="h5 text-light font-weight-normal opacity-70 mb-1">Wskaźnik zainteresowania</div>
+                  </div> -->
+                  <div class="h5 text-light font-weight-normal opacity-70 mb-1">‎‎‎‏‏‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎madeby: <a href="https://hunchos.store">@hunchos</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-7">
+              <div class="cs-parallax ml-lg-n5" style="max-width: 920px;">
+                <div class="cs-parallax-layer position-relative" data-depth="0.1"><img src="wynik/img/layer01.png" alt="Layer"/>
+                </div>
+                <div class="cs-parallax-layer" style="z-index: 2;" data-depth="0.3"><img src="wynik/img/layer02.png" alt="Layer"/>
+                </div>
+                <div class="cs-parallax-layer" data-depth="0.2"><img src="wynik/img/layer03.png" alt="Layer"/>
+                </div>
+                <div class="cs-parallax-layer" style="z-index: 3;" data-depth="0.1"><img src="wynik/img/layer04.png" alt="Layer"/>
+                </div>
+                <div class="cs-parallax-layer" data-depth="0.15"><img src="wynik/img/layer05.png" alt="Layer"/>
+                </div>
+                <div class="cs-parallax-layer" style="z-index: 4;" data-depth="0.25"><img src="wynik/img/layer06.png" alt="Layer"/>
+                </div>
+                <div class="cs-parallax-layer" data-depth="0.3"><img src="wynik/img/layer07.png" alt="Layer"/>
+                </div>
+                <div class="cs-parallax-layer" data-depth="0.4"><img src="wynik/img/layer08.png" alt="Layer"/>
+                </div>
+                <div class="cs-parallax-layer" data-depth="0.35"><img src="wynik/img/layer09.png" alt="Layer"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <!-- Pluginy-->
+    <script src="wynik/vendor/jquery/dist/jquery.slim.min.js"></script>
+    <script src="wynik/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="wynik/vendor/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script src="wynik/vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="wynik/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="wynik/vendor/parallax-js/dist/parallax.min.js"></script>
+    <!-- Główny-->
+    <script src="wynik/js/theme.min.js"></script>
+  </body>
 </html>

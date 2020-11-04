@@ -21,10 +21,10 @@
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">Rezerwacja</h2>
+                    <h2 class="title">Wyszukiwarka</h2>
                     <form method="POST" autocomplete="off">
                         <div class="row row-space">
-                            <div class="col-2">
+                            <!-- <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Imię<label>
                                     <input class="input--style-4" type="text" name="imie">
@@ -35,14 +35,14 @@
                                     <label class="label">Nazwisko</label>
                                     <input class="input--style-4" type="text" name="nazwisko">
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Od kiedy</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="od_kiedy">
+                                        <input class="input--style-4 js-datepicker" type="text" name="od_kiedy" required>
                                         
                                     </div>
                                 </div>
@@ -51,13 +51,13 @@
                                 <div class="input-group">
                                     <label class="label">Od kiedy</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="do_kiedy">
+                                        <input class="input--style-4 js-datepicker" type="text" name="do_kiedy" required>
                                         
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row row-space">
+                        <!-- <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Email</label>
@@ -70,11 +70,11 @@
                                     <input class="input--style-4" type="text" name="telefon">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="input-group">
                             <label class="label">Ilość osób</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="iluosobowy">
+                                <select name="iluosobowy" required>
                                     <option disabled="disabled" selected="selected">Wybierz</option>
                                     <option value="1">Jednoosobowy</option>
                                     <option value="2">Dwuosobowy</option>
@@ -86,7 +86,7 @@
                             </div>
                         </div>
                         <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Rezerwuj</button>
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Wyszukaj</button>
                         </div>
                     </form>
                 </div>
